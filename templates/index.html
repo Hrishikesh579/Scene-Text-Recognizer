@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Scene Text Recognizer</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        Scene Text Recognizer
+    </header>
+    <main>
+        <form method="post" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <input type="submit" value="Detect and Recognize Text">
+        </form>
+
+        {% if input_image %}
+        <div class="image-container">
+            <div class="image-box">
+                <h2>Input Image</h2>
+                <img src="{{ input_image }}" alt="Input Image">
+            </div>
+            <div class="image-box">
+                <h2>Output Image</h2>
+                <img src="{{ output_image }}" alt="Output Image">
+            </div>
+        </div>
+
+        {% if texts %}
+        <div class="text-box">
+            <h3>Recognized Texts:</h3>
+            <ul>
+                {% for text in texts %}
+                    <li>{{ text }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        {% endif %}
+    </main>
+</body>
+</html>
